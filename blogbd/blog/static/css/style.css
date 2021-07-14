@@ -1,0 +1,576 @@
+
+body{
+  background-color: #148186f2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+/* ######edited######### */
+.media-heading{
+  color: #1e1919;
+}
+.media-list{
+  border:1px solid #e0f1ea;
+}
+.thumbnail{
+  background: #bac5ba24;
+}
+h2{
+  color: white
+}
+.likecomment i{
+  color: #7ed319db;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #2acb50;
+}
+
+.control-label {
+  color: #ffffff;
+  text-shadow: 1px 1px #2aac12;
+}
+.nav>li>a:hover{
+  transition: 2s ease;
+}
+.messages p{
+  font-weight: 600 !important;
+  font-size: 20px;
+  background: #ffffff82 !important;
+}
+/* ############### */
+.navbar-default {
+    background-color: #000000b8 !important;
+    border-color: #332e2e !important;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 14px 11px;
+}
+.navbar-default .navbar-nav>li>a{
+  color: #e4d9d9;
+}
+.navbar-default .navbar-brand{
+    color: #e4d9d9;
+}
+/* .navbar-default .navbar-nav>li>a:focus{
+  color: red !important;
+} */
+/*.......................*/
+.post-preview{
+	border:1px solid #e2e1e1;
+	margin-bottom: 50px;
+  background: #dfeee6;
+}
+.usersection{
+	background-color: #f3f3f3;
+	position: relative;
+	border-radius: 4px;
+}
+.usersection::before,.usersection::after{
+	display: table;
+	content: "";
+	clear: both;
+}
+.image-section{
+	display: inline-block;
+	float: left;
+}
+.image-section img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: inline-block;
+}
+.author-section{
+	display: inline-block;
+	float: left;
+}
+.author-section h4 {
+    line-height: 0px;
+    display: inline-block;
+    padding-left: 8px;
+    margin-top: 18px;
+}
+.author-section p {
+    line-height: 0px;
+    margin: 0px;
+    padding-left: 9px;
+    padding-top: 8px;
+    font-size: 14px;
+}
+.mePublished{
+	float: right;
+	padding-left: 5px;
+}
+.post-img img {
+	width: 100%;
+  height: 400px;
+}
+.post-subtitle{
+	padding: 20px 10px 0px 10px;
+}
+.post-subtitle a{
+	color: black;
+}
+.post-subtitle a:hover{
+	text-decoration: none;
+	color: black;
+}
+.post-meta{
+	line-height: 30px;
+	padding: 0px 10px;
+}
+/* .post-meta a {
+	color: black;
+} */
+.post-meta a:hover{
+	text-decoration: none;
+	color: white;
+  padding: 1px;
+  background: #585757;
+  border-radius: 2px;
+  transition: .5s ease;
+}
+.likecomment{
+	display: block;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.badge {
+    color: #23527c !important;
+    background-color: #e6dddd !important;
+}
+.badge:hover{
+	 color: #23527c !important;
+    background-color: #f9f9f9 !important;
+}
+.get-comment{
+	background-color: #f1eeee;
+}
+/*............................*/
+.categorih3{
+	background-color: #fefefe;
+	padding: 9px;
+}
+.popularimgsection {
+	box-sizing: border-box;
+	width: 64px;
+	height: 64px;
+	border-radius: 4px;
+}
+.popularsectionstart{
+	display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #bac5ba24;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.popularh3{
+	background-color: #ffffff;
+	padding: 9px;
+}
+.popularinside{
+	padding: 9px;
+}
+.media-body{
+  padding-top: 9px;
+  padding-left:10px;
+  border-radius: 4px;
+
+}
+.media-body a h4{
+  color: white;
+}
+.media-body p{
+  color: #ffffffd9;
+}
+.media-body:hover{
+	background: #0000008a !important;
+  transition: 1s ease;
+}
+/*............>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*............>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*............>>>>>>>>Me section start >>>>>>>>>>>>>>>>>>>*/
+/*............>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.prifile-top{
+	position: relative;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 19px 6px #1e1d1dfa;
+  border: 1px solid #0eff4259;
+}
+.prifile-top img{
+	width: 100%;
+	max-height: 400px;
+	z-index: .5;
+}
+.profile-pik{
+  position: absolute;
+  z-index: 5;
+  border-radius: 50%;
+  border: 5px solid #605e5e00;
+  left: 51px;
+  bottom: 3px;
+  box-shadow: 0px 0px 9px 7px #393d3a;
+}
+.profile-pik img{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	display: inline;
+}
+.bottonsectionleftside {
+	width: 100%;
+	height: 50px;
+	background-color: gray;
+}
+.meprofileusernme{
+	position: absolute;
+	z-index: 5;
+	left: 283px;
+    bottom: 57px;
+}
+.meprofileusernme h2{
+	font-weight: 600;
+	color: white;
+}
+.meprofileusernme p{
+	font-weight: 500;
+	color: white;
+  padding-left: 10%;
+}
+.postcreatebutton{
+	position: absolute;
+	z-index: 5;
+	right:0;
+  bottom: 57px;
+}
+
+.postcreatebutton a {
+    padding: 8px 39px !important;
+    border-radius: 0px !important;
+    font-weight: 600;
+}
+
+.groupjoinbutton{
+	position: absolute;
+	z-index: 5;
+	right:0px;
+  bottom: 200px;
+}
+
+.groupjoinbutton a {
+    padding: 8px 39px !important;
+    border-radius: 0px !important;
+    font-weight: 600;
+}
+/*>>>>>>>>>>>>>>>>>>>*/
+.contactpagenine{
+	padding-left: 40px !important;
+}
+.contactprifile-top{
+	position: relative;
+	box-sizing: border-box;
+	box-shadow: 3px 10px 39px -2px;
+}
+.contactprofile-pik img{
+	width: 100%;
+	height: 250px;
+}
+.contactprofileusernme{
+	text-align: center;
+	padding: 10px;
+  background: #ffffff1f;
+}
+.contacth2set{
+  padding: 0px;
+  margin: 0px;
+  padding-bottom: 20px;
+  color: #000000;
+  font-weight: 500;
+  font-style: initial;
+}
+/*///////////////////////*/
+.futter{
+	background-color: #0000007a;
+	margin-top: 50px;
+}
+.futterbodysection {
+	text-align: right;
+	padding: 40px;
+  color: #2bfe5e96;
+}
+
+
+
+/*>>>>>>>>>>Comment section>>>>>>>>>>>>>*/
+.thumbnailedit{
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #313538;
+  border: 1px solid #b6b5ef;
+  border-radius: 4px;
+}
+
+.editcommentsectionmain{
+	padding: 10PX;
+	box-sizing: border-box;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.editcommentsection{
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+}
+.commentdate {
+	float: right;
+}
+.commentsectionimg img {
+	width: 64px;
+	height: 64px;
+	box-sizing: border-box;
+}
+
+
+/* >>>>>>>>>>> */
+.list-group-item:last-child:hover{
+  background:#c5c5c5;
+  transition: 1s ease;
+}
+/* >>>>>>>>>>>>>>>Single Group>>>>>>>>>>>>>>>>>>>>>>> */
+.groupcsssectionheader{
+	position: absolute;
+	z-index: 5;
+	left: 72px;
+  bottom: 57px;
+  background: #2424248c;
+  border-radius: 9px;
+}
+.groupcsssectionheader h1 {
+	font-size: 52px;
+  color: #d3cfcf;
+}
+.groupcsssectionheader span{
+  padding-left: 30px;
+  color: #aca7a7;
+}
+.meprofileusernme h2{
+	font-weight: 600;
+	color: white;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.input-group{
+	margin-bottom: 20px;
+}
+.search-grops input {
+	background-color: #909c9b40;
+}
+.group-section::before, .group-section::after{
+	display: table;
+	content: "";
+	clear: both;
+}
+
+.group-section{
+	border: 1px solid #eeebeb;
+	position: relative;
+	border-radius: 4px;
+	margin-bottom: 25px;
+  background: #0000003b;
+}
+
+.groups-img-section {
+	display: inline-block;
+	float: left;
+}
+.groups-img-section img {
+	box-sizing: border-box;
+	width: 150px;
+	height: 122px;
+}
+.textsection {
+	display: inline-block;
+	padding-left: 20px;
+}
+.textsection p{
+  color: white;
+}
+.textsection a{
+	color: #413f3f;
+}
+.textsection a:hover{
+	text-decoration: none;
+	color: black;
+	transition: 1s ease;
+}
+.goupjoinsection {
+	float: right;
+	background-color: #5bc0de;
+	text-align: center;
+	width: 150px;
+	height: 122px;
+
+}
+.goupjoinsection a {
+    text-align: center;
+    display: block;
+    padding: 38px 20px;
+    color: white;
+    font-size: 29px;
+}
+
+.goupjoinsection a:hover{
+	text-decoration: none;
+	transition: 1s ease;
+	color: yellow;
+}
+/*##############################*/
+/*##############################*/
+/*##########GroupUserRemove######*/
+/*##############################*/
+.groupmember{
+ box-shadow: 1px 0px 9px 3px #7ccf72;
+	position: relative;
+}
+.memberimage img{
+	float: left;
+	width:80px;
+	height: 80px;
+}
+
+.memberinfo{
+	float: left;
+}
+.memberinfo h4{
+	padding-left: 5px;
+	font-size: 12px;
+	font-style: bold;
+  color: white;
+}
+.buttonremove{
+	float: right;
+}
+.btn-custom{
+  color: #fff;
+background-color: #4d5456;
+border-color: #9bb8c1
+}
+/* ############### */
+.removememberformgroup a{
+   box-shadow: 0px 4px 27px 3px #d37f38;
+}
+/*Blood section*/
+/*Blood section*/
+.devisize{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.devitionbox{
+	margin-bottom: 50px;
+	border-radius: 8px;
+	border: 2px solid #d7474766;
+  box-shadow: -1px 0px 14px 8px #1a1818;
+	text-align: center;
+  color: white;
+	text-transform:uppercase;
+  box-sizing: border-box;
+}
+.devitionbox h1{
+  padding: 50px 5px;
+}
+.devitionbox:hover{
+  color: #f00707d4;
+	background-color: #07090c6b;
+  box-shadow: -1px 0px 14px 8px #a0a0a061;
+	border: 2px solid #f0070769;
+	transition: ease 1s;
+}
+
+/*Blood section*/
+/*Blood section*/
+.scblood{
+	margin-bottom: 35px;
+}
+.formeditblood select{
+  text-align: center;
+  padding: 10px 30px;;
+  font-weight: 600;
+  margin-right: 20px;
+}
+.formeditblood input{
+  padding: 7px 60px;
+  font-size: 15px;
+}
+/* ............. */
+.banner{
+  color: white;
+  text-align: center;
+  background-color: #ff00002b;
+  border-radius: 8px;
+
+}
+.banner h1{
+  padding: 20px 40px;
+}
+.clbutton{
+  color: white;
+  padding: 0px 26px;
+  background: #247f10;
+  border-radius: 8px;
+}
+.clbutton:hover{
+  color: #e62e2e;
+  background: #e4e4e4;
+ text-decoration: none;
+ transition: ease 1s;
+}
+/* //////////loginformedit///////// */
+.loginformedit label{
+  color: white;
+}
+.loginformedit p{ color: white}
+.loginformedit a{ color: #00ff22}
+.pagination{
+  color: white;
+}
+
+
+.leavegp{
+  color: red;
+}
+
+/* .................................. */
+/* .........tooltiptext.............. */
+/* .................................. */
+.mePublished .deltiptext {
+  visibility: hidden;
+  width: 98px;
+  background-color: #840202;
+  color: #fff;
+  text-align: center;
+  border-radius: 14px 14px 0px 0px;
+  padding: 7px 0px;
+  position: absolute;
+  z-index: 1;
+  /* margin-left: -166px; */
+  margin-top: -35px;
+  margin-left: -86px;
+}
+.mePublished:hover .deltiptext {
+  visibility: visible;
+}

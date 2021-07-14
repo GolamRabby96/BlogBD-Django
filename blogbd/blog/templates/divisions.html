@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load bootstrap3 %}
+	<!-- ........................nav bar end................................. -->
+
+  <div class="container devisize">
+  		<div class="row">
+        <a href="{% url 'searchblood' name='Dhaka' %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Dhaka</h1>
+    				</div>
+    			</div>
+        </a>
+        <a href="{% url 'searchblood' name='Khulna' %}">
+          <div class="col-md-3">
+            <div class="devitionbox">
+              <h1>Khulna</h1>
+            </div>
+          </div>
+        </a>
+        <a href="{% url 'searchblood' name='Barisal' %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Barisal</h1>
+    				</div>
+    			</div>
+        </a>
+        <a href="{% url 'searchblood' name='Sylhet' %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Sylhet</h1>
+    				</div>
+    			</div>
+        </a>
+        <a href="{% url 'searchblood' name='Rajshahi' %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Rajshahi</h1>
+    				</div>
+    			</div>
+        </a>
+        <a href="{% url 'searchblood' name='Rangpur' %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Rangpur</h1>
+    				</div>
+    			</div>
+        </a>
+        <a href="{% url 'searchblood' name='Mymensingh' %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Mymensingh</h1>
+    				</div>
+    			</div>
+        </a>
+        <a href="{% url 'searchblood' name='Chittagong'  %}">
+          <div class="col-md-3">
+    				<div class="devitionbox">
+    					<h1>Chittagong</h1>
+    				</div>
+    			</div>
+        </a>
+
+  		</div>
+  	</div>
+{% endblock %}

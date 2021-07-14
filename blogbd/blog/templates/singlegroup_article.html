@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block foo %}
+{% load static %}
+{% block style %}
+<style media="screen">
+  .nav>li>a:focus, .nav>li>a:hover {
+    transition: 1s ease !important;
+    color:blank !important;
+    /* background:#5f5dea !important; */
+  }
+  .btn-success:hover {
+    color: black !important;
+    transition: 1s ease;
+  }
+  .btn-danger:hover {
+    color: black !important;
+    transition: 1s ease;
+  }
+  /* .navbar {
+  margin-bottom: 0px;
+} */
+</style>
+{% endblock %}
+
+<!-- ........................nav bar end................................. -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- prifile Image section -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="prifile-top">
+        {% if group.group_cover_picture %}
+        <img src="{{group.group_cover_picture.url}}">
+        {% else %}
+        <img src="{% static 'image/bb.jpg' %}">
+        {% endif %}
+
+        <div class="groupcsssectionheader">
+          <h1>{{group.group_name}}</h1>
+          <span>Since-({{group.group_create_date|date:"D M Y"}})</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- ................ -->
+          <div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">My Groups</h3>
+                  <div class="caption">
+                    {% for jg in mywongroup %}
+                      <a href="{% url 'singlegroup' id=jg.id %}">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span class="badge">{{jg.group_member.count}}</span>
+                            {{jg.group_name}}
+                          </li>
+                        </ul>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ................ -->
+          <div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">Joined Groups</h3>
+                  <div class="caption">
+                    {% for jg in joindroup %}
+                      <a href="{% url 'singlegroup' id=jg.id %}">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span class="badge">{{jg.group_member.count}}</span>
+                            {{jg.group_name}}
+                          </li>
+                        </ul>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- >>>>>>>>>>>>>>>>>>> -->
+        </div>
+        <div class="col-md-9   mx-auto">
+          <!-- ........>>>>>>>>><<<<<<<<........ -->
+          <div class="post-preview">
+            <div class="usersection">
+              <div class="image-section">
+                {% if post.group_article_author.profile_picture %}
+                <img src="{{ post.group_article_author.profile_picture.url }}">
+                {% else %}
+                <img src="{% static 'image/ff.jpg' %}">
+                {% endif %}
+              </div>
+              <div class="author-section">
+                <h4>{{post.group_article_author.name.first_name}} {{post.group_article_author.name.last_name}}</h4>
+                <p>{{post.group_post_create_date|date:"D M Y"}}</p>
+              </div>
+              {% if request.user.id == post.group_article_author.id %}
+              <div class="mePublished">
+                <a class="btn btn-info" href="{% url 'update_grouparticle' gid=groupid pid=post.id %}">Update</a>
+              </div>
+              <div class="mePublished">
+                <!-- <a class="btn btn-info" data-toggle="modal" data-target=".gpd" >Delete</a> -->
+                <a class="btn btn-info" href="{% url 'delete_grouparticle' gid=groupid pid=post.id %}" >Delete</a>
+								<span class="deltiptext">Are You Sure</span>
+              </div>
+              <!-- <div class="modal fade gpd" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you sure <a class="btn btn-info" href="{% url 'delete_grouparticle' gid=groupid pid=post.id %}">Yes</a></h2>
+                  </div>
+                </div>
+              </div> -->
+              {% endif %}
+            </div>
+            <div class="detais-section">
+              <div  class="post-img">
+                {% if post.group_post_image %}
+                <a ><img src="{{post.group_post_image.url}}"></a>
+                {% endif %}
+              </div>
+              <h4 class="post-subtitle">
+                <a >{{post.group_post_title}}</a>
+              </h4>
+              <p class="post-meta">
+                {{post.group_post_body}}
+              </p>
+            </div>
+            <div class="likecomment">
+              <div>
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                  {% if glikes is True %}
+                    <li><a href="{% url 'like_grouparticle' gid=groupid  pid=post.id name='gplike' %}"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Like<span class="badge">{{like}}</span></a></li>
+                  {% else %}
+                    <li><a href="{% url 'like_grouparticle' gid=groupid  pid=post.id name='gplike' %}"><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp;Like<span class="badge">{{like}}</span></a></li>
+                  {% endif %}
+                  <li><a><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;Comment&nbsp;<span class="badge">{{getComment.count}}</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- .......... -->
+          <!-- .......... -->
+          <div class="thumbnailedit">
+            <form method="POST" action="{% url 'Comment_grouparticle' gid=groupid pid=post.id %}">
+              {% csrf_token %}
+              {% bootstrap_form form %}
+              <input type="submit" class=" btn btn-info" name="" value="Done"><br><br>
+            </form>
+          </div>
+          {% for com in getComment %}
+            <ul class="media-list editcommentsection">
+              <li class="media ">
+                <div class="media-left commentsectionimg">
+                  <a>
+                    <!-- <img class="media-object" src="..." alt="..."> -->
+                    {% if com.group_comment_author.profile_picture %}
+                      <img src="{{ com.group_comment_author.profile_picture.url }}">
+                    {% else %}
+                      <img src="{% static 'image/ff.jpg' %}">
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">{{com.group_comment_author.name.first_name}} {{com.group_comment_author.name.last_name}} <span class="commentdate">{{com.group_comment_date|date:"D M Y"}}</span></h4>
+                  {{com.group_comment}}
+                </div>
+              </li>
+            </ul>
+          {% endfor %}
+          <!-- >>>>>>>>>>>>>>>>>>>> -->
+          <!-- .......... -->
+          <!-- .......... -->
+          <!-- .......... -->
+        </div>	<!-- >>>>>Col8 end>>>>> -->
+      </div><!-- >>>>>Col4 start>>>>> -->
+    </div>
+{% endblock %}

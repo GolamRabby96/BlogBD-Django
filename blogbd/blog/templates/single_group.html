@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load static %}
+{% block style %}
+<style media="screen">
+  .nav>li>a:focus, .nav>li>a:hover {
+    transition: 1s ease !important;
+    color:blank !important;
+    /* background:#5f5dea !important; */
+  }
+  .btn-success:hover {
+    color: black !important;
+    transition: 1s ease;
+  }
+  .btn-danger:hover {
+    color: black !important;
+    transition: 1s ease;
+  }
+  /* .navbar {
+  margin-bottom: 0px;
+} */
+</style>
+{% endblock %}
+
+<!-- ........................nav bar end................................. -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- prifile Image section -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="prifile-top">
+        {% if group.group_cover_picture %}
+        <img src="{{group.group_cover_picture.url}}">
+        {% else %}
+        <img src="{% static 'image/bb.jpg' %}">
+        {% endif %}
+
+        <div class="groupcsssectionheader">
+          <h1>{{group.group_name}}</h1>
+          <span>Since-({{group.group_create_date|date:"D M Y"}})</span>
+        </div>
+        {% if groupmodarator is True %}
+        <div class="groupjoinbutton">
+          <a href="" class="btn btn-danger"  data-toggle="modal" data-target=".groupdelete">Delete Group </a>
+        </div>
+        <!-- .............................. -->
+        <div class="modal fade groupdelete" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you sure <a class="btn btn-info" href="{% url 'groupdelete' id=groupid %}">Yes</a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- .............................. -->
+        {% elif access is True %}
+        <div class="groupjoinbutton">
+          <a href="" class="btn btn-danger" data-toggle="modal" data-target=".groupleave">Leave </a>
+        </div>
+        <!-- .............................. -->
+        <div class="modal fade groupleave" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <h2 class="leavegp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you sure <a class="btn btn-info" href="{% url 'joingroup' id=groupid %}">Yes</a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- .............................. -->
+        {% else %}
+          {% if requestmember is True %}
+            <div class="groupjoinbutton">
+              <a href="" class="btn btn-info">Done</a>
+          </div>
+          {%else%}
+            <div class="groupjoinbutton">
+              <a href="{% url 'joingroup' id=groupid %}" class="btn btn-info">Join </a>
+            </div>
+          {% endif %}
+        {% endif %}
+        {% if access is True or groupmodarator is True %}
+        <div class="postcreatebutton">
+          <a href="{% url 'create_grouparticle' id=groupid %}" class="btn btn-success">Create Post</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+{% if access is True or groupmodarator is True %}
+
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          {% if groupmodarator is True %}
+          <div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">Request Member</h3>
+                  <div class="caption">
+                    {% for jg in requestgroup %}
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span href="#" class="badge"><a href="{% url 'memberadd' gid=jg.whichgroup.id mid=jg.who.id  %}">Add</a></span>
+                            <span class="badge"><a href="{% url 'memberremove' gid=jg.whichgroup.id mid=jg.who.id %}">Remove</a></span>
+                            <a href="{% url 'user_profile_view' id=jg.who.id %}">{{jg.who}}</a>
+                          </li>
+                        </ul>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          <!-- ................ -->
+          <div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">My Groups</h3>
+                  <div class="caption">
+                    {% for jg in mywongroup %}
+                      <a href="{% url 'singlegroup' id=jg.id %}">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span class="badge">{{jg.group_member.count}}</span>
+                            {{jg.group_name}}
+                          </li>
+                        </ul>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ................ -->
+          <div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">Joined Groups</h3>
+                  <div class="caption">
+                    {% for jg in joindroup %}
+                      <a href="{% url 'singlegroup' id=jg.id %}">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span class="badge">{{jg.group_member.count}}</span>
+                            {{jg.group_name}}
+                          </li>
+                        </ul>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          {% if groupmodarator is True %}
+          <div class="removememberformgroup">
+            <a href="{% url 'show_groupmeber' gid=groupid %}" class="btn btn-success col-md-12">See All Members</a>
+          </div>
+          {% endif %}
+          <!-- >>>>>>>>>>>>>>>>>>> -->
+        </div>
+        <div class="col-md-9   mx-auto">
+          <!-- ........>>>>>>>>><<<<<<<<........ -->
+          {% for post in article %}
+          <div class="post-preview">
+            <div class="usersection">
+              <div class="image-section">
+                {% if post.group_article_author.profile_picture %}
+                <img src="{{ post.group_article_author.profile_picture.url }}">
+                {% else %}
+                <img src="{% static 'image/ff.jpg' %}">
+                {% endif %}
+              </div>
+              <div class="author-section">
+                <h4>{{post.group_article_author.name.first_name}} {{post.group_article_author.name.last_name}}</h4>
+                <p>{{post.group_post_create_date|date:"D M Y"}}</p>
+              </div>
+              {% if request.user.id == post.group_article_author.id %}
+              <div class="mePublished">
+                <a class="btn btn-info" href="{% url 'update_grouparticle' gid=groupid pid=post.id %}">Update</a>
+              </div>
+              <div class="mePublished">
+                <!-- <a class="btn btn-info" data-toggle="modal" data-target=".gpd" >Delete</a> -->
+                <a class="btn btn-info" href="{% url 'delete_grouparticle' gid=groupid pid=post.id %}" >Delete</a>
+								<span class="deltiptext">Are You Sure</span>
+              </div>
+              <!-- <div class="modal fade gpd" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you sure <a class="btn btn-info" href="{% url 'delete_grouparticle' gid=groupid pid=post.id %}">Yes</a></h2>
+                  </div>
+                </div>
+              </div> -->
+              {% endif %}
+            </div>
+            <div class="detais-section">
+              <div  class="post-img">
+                {% if post.group_post_image %}
+                <a href="{% url 'single_grouparticle' gid=groupid pid=post.id %}"><img src="{{post.group_post_image.url}}"></a>
+                {% endif %}
+              </div>
+              <h4 class="post-subtitle">
+                <a href="{% url 'single_grouparticle' gid=groupid pid=post.id %}">{{post.group_post_title}}</a>
+              </h4>
+              <p class="post-meta">
+                {{post.group_post_body}}
+              </p>
+            </div>
+            <div class="likecomment">
+              <div>
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                  <li><a href="{% url 'single_grouparticle' gid=groupid pid=post.id %}"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Total Likes <span class="badge">{{post.like_count}}</span></a></li>
+                  <li><a href="{% url 'single_grouparticle' gid=groupid pid=post.id %}"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;Get Comment<span class="badge"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}<!-- .......... -->
+          <!-- .......... -->
+        </div>	<!-- >>>>>Col8 end>>>>> -->
+      </div><!-- >>>>>Col4 start>>>>> -->
+    </div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+{% else %}
+  {% if requestmember is True %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 style='text-align:center'>Request Already Send</h2>
+        </div>
+      </div>
+    </div>
+  {% else %}
+  <div class="container">
+    <div class="row">
+      <h1 class="thumbnail">NB:-All Groups are closed groups.. So if you want to see post .. you must
+        <a href="{% url 'joingroup' id=groupid %}"> joining </a> First
+      </h1>
+    </div>
+  </div>
+  {% endif %}
+{% endif %}
+{% endblock %}

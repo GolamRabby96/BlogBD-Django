@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load %}
+{% load static %}
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9  mx-auto">
+				<div class="search-grops">
+					<form class="" method="POST" action="{% url 'groupsearch' %}">
+						<div class="input-group">
+            {% csrf_token %}
+							 <input style="color:white" type="text" name="gname" class="form-control" placeholder="Search your group" required>
+							 <span class="input-group-btn">
+								 <button class="btn btn-default" type="submit">Search Your Groups!</button>
+							 </span>
+					 </div><!-- /input-group -->
+					</form>
+				</div>
+
+        {% for gp in group %}
+				<div class="group-section">
+					<div class="groups-img-section">
+						<a href="{% url 'singlegroup' id=gp.id %}">
+							{% if gp.group_cover_picture %}
+								<img src="{{gp.group_cover_picture.url}}"">
+							{% endif %}
+						</a>
+					</div>
+					<div class="textsection">
+						<a href="{% url 'singlegroup' id=gp.id %}">
+						<h2>{{gp.group_name}}</h2>
+						<p>Sins {{gp.group_create_date|date:"D M Y"}}</p>
+						</a>
+					</div>
+          <div class="goupjoinsection">
+            <a href="{% url 'singlegroup' id=gp.id %}" class="" >{{gp.group_member.count}}<i class="fa fa-user" aria-hidden="true"></i></a>
+          </div>
+
+
+				</div>
+        {% endfor %}
+				<!-- >>>>>>>>>>>>>>>> -->
+			</div>
+			<!-- >>>>>Col8 end>>>>> -->
+			<!-- >>>>>Col4 start>>>>> -->
+		<div class="col-md-3">
+			<div class="Categories_sections">
+				<div class="row">
+					<div>
+						<div class="thumbnail">
+							<h3 class="categorih3">My Groups</h3>
+							<div class="caption">
+								{% for jg in mywongroup %}
+									<a href="{% url 'singlegroup' id=jg.id %}">
+										<ul class="list-group">
+											<li class="list-group-item">
+												<span class="badge">{{jg.group_member.count}}</span>
+												{{jg.group_name}}
+											</li>
+										</ul>
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="Categories_sections">
+				<div class="row">
+					<div>
+						<div class="thumbnail">
+							<h3 class="categorih3">Joined Groups</h3>
+							<div class="caption">
+								{% for jg in joindroup %}
+								<a href="{% url 'singlegroup' id=jg.id %}">
+									<ul class="list-group">
+										<li class="list-group-item">
+											<span class="badge">{{jg.group_member.count}}</span>
+											{{jg.group_name}}
+										</li>
+									</ul>
+								</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+			</div>
+		</div>
+		<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+		<!-- ...................................................... -->
+
+{% endblock %}

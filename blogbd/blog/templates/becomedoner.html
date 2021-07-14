@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load bootstrap3 %}
+	<!-- ........................nav bar end................................. -->
+  <br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="thumbnail">
+					<h2>Welcome to Blood Doner Registration Page</h2>
+					<form method="POST">
+						{% csrf_token %}
+						{% bootstrap_form form %}
+						<input type="submit" class=" btn btn-info col-md-12" name="" value="Send"><br><br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+  <br><br>
+{% endblock %}

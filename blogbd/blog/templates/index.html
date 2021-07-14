@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load %}
+{% load static %}
+{% block style %}
+	<style media="screen">
+
+	</style>
+{% endblock %}
+
+		<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-1 col-Sm-9 col-xs-9 mx-auto">
+					<!-- ........>>>>>>>>><<<<<<<<........ -->
+					{% for post in post %}
+						<div class="post-preview">
+							<div class="usersection">
+								<div class="image-section">
+									{% if post.article_author.profile_picture %}
+										<a href="{% url 'user_profile_view' id=post.article_author.name.id %}"><img src="{{ post.article_author.profile_picture.url }}"></a>
+									{% else %}
+										<a href="{% url 'user_profile_view' id=post.article_author.name.id %}"><img src="{% static 'image/ff.jpg' %}"></a>
+									{% endif %}
+								</div>
+								<div class="author-section">
+									<h4><a href="{% url 'user_profile_view' id=post.article_author.name.id %}">{{post.article_author.name.first_name}} {{post.article_author.name.last_name}}</a></h4>
+									<p>{{post.create_date|date:"D M Y"}}</p>
+								</div>
+							</div>
+							<div class="detais-section">
+								<div  class="post-img">
+									{% if post.post_image %}
+									<a href="{% url 'single_post' id=post.id %}"><img src="{{post.post_image.url}}"></a>
+									{% endif %}
+								</div>
+								<h4 class="post-subtitle">
+									<a href="{% url 'single_post' id=post.id %}">{{post.post_title}}</a>
+								</h4>
+								<p class="post-meta">
+									{{post.post_body|safe|truncatechars:180}} <a href="{% url 'single_post' id=post.id %}"> more</a>
+								</p>
+							</div>
+							<div class="likecomment">
+								<div>
+									<ul class="nav nav-pills nav-justified" role="tablist">
+										<li id="like" ><a href="{% url 'like' id=post.id  name=' ' %}" ><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Total Likes<span class="badge">	{{post.like_count}}</span></a></li>
+										<li><a href="{% url 'single_post' id=post.id %}"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;Get Comment<span class="badge"></span></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					{% endfor %}<!-- .......... -->
+				</div>
+				<!-- >>>>>Col8 end>>>>> -->
+				<!-- >>>>>Col4 start>>>>> -->
+			<div class="col-md-3 col-sm-3 col-xs-9 col-xm-8">
+				<div class="Categories_sections">
+					<div class="row">
+						<div>
+							<div class="thumbnail">
+								<h3 class="categorih3">Categories</h3>
+								<div class="caption">
+
+									{% for cat in cat %}
+									<a href="{% url 'category' name=cat.post_categori %}">
+										<ul class="list-group">
+											<li class="list-group-item">
+												<span class="badge">{{cat.post_categori_count}}</span>
+												{{cat.post_categori}}
+											</li>
+										</ul>
+									</a>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="popular_sections">
+					<div class="row">
+						<div class="popularsectionstart">
+							<h3 class="popularh3">Most Popular Post</h3>
+							{% for pop in popular %}
+								<ul class="media-list">
+									<li class="media popularinside">
+										<div class="media-left">
+											<a href="{% url 'single_post' id=pop.id %}">
+											{% if pop.post_image %}
+												<img class="media-object popularimgsection" src="{{pop.post_image.url}}" alt="...">
+												{% else %}
+												<img class="media-object popularimgsection" src="{% static 'image/dm.jpg' %}" alt="">
+											{% endif %}
+											</a>
+										</div>
+										<div class="media-body">
+											<a href="{% url 'single_post' id=pop.id %}"><h4 class="media-heading">{{pop.post_title|truncatechars:18}}</h4>
+												<p>{{pop.post_body|truncatechars:25}}</p></a>
+											</div>
+										</li>
+									</ul>
+							{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="pagination">
+			<h3>
+			<span class="step-links">
+					{% if post.has_previous %}
+							<a class="btn btn-danger" href="?page=1"><b>&laquo; first</b></a>
+							<a class="btn btn-success" href="?page={{ post.previous_page_number }}"><b>previous</b></a>
+					{% endif %}
+
+					<span class="current">
+							<b>Page</b> {{ post.number }} <i>of </i>  {{ post.paginator.num_pages }}.
+					</span>
+
+					{% if post.has_next %}
+							<a class="btn btn-success" href="?page={{ post.next_page_number }}"><b>next &nbsp;</b></a>
+							<a class="btn btn-danger" href="?page={{ post.paginator.num_pages }}"><b>last &raquo;</b></a>
+					{% endif %}
+			</span>
+		</h3>
+	</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

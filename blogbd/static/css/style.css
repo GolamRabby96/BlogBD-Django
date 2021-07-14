@@ -1,0 +1,203 @@
+
+.navbar-default {
+    background-color: #d8d5d5 !important;
+    border-color: #e7e7e7 !important;
+}
+/*.......................*/
+.post-preview{
+	border:1px solid #e2e1e1;
+	margin-bottom: 50px;
+}
+.usersection{
+	background-color: #f3f3f3;
+	position: relative;
+	border-radius: 4px;
+}
+.usersection::before,.usersection::after{
+	display: table;
+	content: "";
+	clear: both;
+}
+.image-section{
+	display: inline-block;
+	float: left;
+}
+.image-section img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: inline-block;
+}
+.author-section{
+	display: inline-block;
+	float: left;
+}
+.author-section h4 {
+    line-height: 0px;
+    display: inline-block;
+    padding-left: 8px;
+    margin-top: 18px;
+}
+.author-section p {
+    line-height: 0px;
+    margin: 0px;
+    padding-left: 18px;
+    padding-top: 8px;
+    font-size: 14px;
+}
+.mePublished{
+	float: right;
+	padding-left: 5px;
+}
+.post-img img {
+	max-width: 100%;
+}
+.post-subtitle{
+	padding: 20px 10px 0px 10px;
+}
+.post-subtitle a{
+	color: black;
+}
+.post-subtitle a:hover{
+	text-decoration: none;
+	color: black;
+}
+.post-meta{
+	line-height: 30px;
+	padding: 0px 10px;
+}
+.post-meta a {
+	color: black;
+}
+.post-meta a:hover{
+	text-decoration: none;
+	color: black;
+}
+.likecomment{
+	display: block;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.badge {
+    color: #23527c !important;
+    background-color: #e6dddd !important;
+}
+.badge:hover{
+	 color: #23527c !important;
+    background-color: #f9f9f9 !important;
+}
+.get-comment{
+	background-color: #f1eeee;
+}
+/*............................*/
+.categorih3{
+	background-color: #d8d5d5;
+	padding: 9px;
+}
+.popularimgsection {
+	box-sizing: border-box;
+	width: 64px;
+	height: 64px;
+	border-radius: 4px;
+}
+.popularsectionstart{
+	display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.popularh3{
+	background-color: #d8d5d5;
+	padding: 9px;
+}
+.popularinside{
+	padding: 9px;
+}
+/*............>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*............>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*............>>>>>>>>Me section start >>>>>>>>>>>>>>>>>>>*/
+/*............>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.prifile-top{
+	position: relative;
+	box-sizing: border-box;
+	box-shadow: 3px 10px 39px -2px;
+}
+.prifile-top img{
+	width: 100%;
+	max-height: 400px;
+	z-index: .5;
+}
+.profile-pik{
+	position: absolute;
+	z-index: 5;
+	border-radius: 50%;
+	border:5px solid #ffffff;
+	left: 51px;
+	bottom: 3px;
+}
+.profile-pik img{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	display: inline;
+}
+.bottonsectionleftside {
+	width: 100%;
+	height: 50px;
+	background-color: gray;
+}
+.meprofileusernme{
+	position: absolute;
+	z-index: 5;
+	left: 283px;
+    bottom: 57px;
+}
+.meprofileusernme h2{
+	font-weight: 600;
+	color: white;
+}
+.meprofileusernme p{
+	margin-left: 10px;
+	font-weight: 500;
+	color: white;
+}
+/*>>>>>>>>>>>>>>>>>>>*/
+.contactpagenine{
+	padding-left: 40px !important;
+}
+.contactprifile-top{
+	position: relative;
+	box-sizing: border-box;
+	box-shadow: 3px 10px 39px -2px;
+}
+.contactprofile-pik img{
+	width: 100%;
+	height: 250px;
+}
+.contactprofileusernme{
+	text-align: center;
+	padding: 10px;
+}
+.contacth2set{
+	padding: 0px;
+	margin:0px;
+	padding-bottom: 20px;
+	text-align: center;
+	color: tomato;
+	font-weight: 600;
+}
+/*///////////////////////*/
+.futter{
+	background-color: #d8d5d5;
+	margin-top: 50px;
+}
+.futterbodysection {
+	text-align: center;
+	padding: 50px;
+}

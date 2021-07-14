@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load %}
+{% load static %}
+{% load bootstrap3 %}
+	<!-- ........................nav bar end................................. -->
+  {% if alreadyregister is False %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="banner">
+          <h1>Become a Blood Doner &nbsp&nbsp&nbsp<a href="{% url 'becomedoner' %}" class="clbutton">Click</a></h1>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+    {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <form class="formeditblood" action="{% url 'searchbloodresult' name=name %}" method="POST">
+						{% csrf_token %}
+            <select name="district">
+              <option value="">Select Your District</option>
+              {% for dd in dis %}
+                <option value="{{dd}}">{{dd}}</option>
+              {% endfor %}
+            </select>
+            <select name="bgrop">
+              <option value="">Select Your Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+            <input type="submit" class="btn-success" value="Search">
+          </form>
+      </div>
+    </div>
+  </div><br><br><br>
+  <div class="container">
+  		<div class="row">
+        {% for bd in doner %}
+          <div class="col-md-3 scblood">
+    				<div class="usersection">
+    					<div class="image-section">
+                {% if bd.doner_auth.profile_picture %}
+                  <img src="{{bd.doner_auth.profile_picture.url}}" alt="">
+                {% else %}
+                <img src="{% static 'image/ff.jpg' %}">
+                {% endif %}
+    					</div>
+    					<div class="author-section">
+    						<!-- posted by: {{post.article_author.name.username}} -->
+    						<h4>{{bd.doner_auth.name.first_name}} {{bd.doner_auth.name.last_name}}<b>[<span style="color:red"> {{bd.blood_group}} </span> ]</b></h4>
+    						<p><b>Mob-0{{bd.number}}</b></p>
+    					</div>
+    				</div>
+    			</div>
+        {% endfor %}
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  		</div>
+  	</div>
+{% endblock %}

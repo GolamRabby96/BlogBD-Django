@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load bootstrap3 %}
+	<!-- ........................nav bar end................................. -->
+  <br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="thumbnail">
+          <br><br>
+					<h2>Welcome to Blog_BD login page ..</h2><br><br>
+					<form method="POST" class="loginformedit">
+            {% csrf_token %}
+					  <div class="form-group">
+						    <label for="exampleInputEmail1">Username</label>
+						    <input type="text" class="form-control" id="exampleInputEmail1" name=username placeholder="Username">
+						  </div><br>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Password</label>
+						    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+						  </div><br>
+						  <button type="submit" class="btn btn-success col-md-12">Submit</button><br><br><br>
+              <p>if you are not register yet. please <b><a href="{% url 'register' %}"> Register??</a></b></p>
+              <br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load bootstrap3 %}
+{% load static %}
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="contactprifile-top">
+					<div class="contactprofile-pik">
+						{% if auth.cover_picture %}
+							<img src="{{auth.profile_picture.url}}">
+						{% else %}
+							<img src="{% static 'image/ff.jpg' %}">
+						{% endif %}
+					</div>
+					<div class="contactprofileusernme">
+						<h2>{{user.first_name}} {{user.last_name}}</h2>
+						<p>({{user.username}})</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9  mx-auto contactpagenine">
+				<h2 class="contacth2set">Please put down your Feedback!</h2>
+				<form method="POST">
+					{% csrf_token %}
+					{% bootstrap_form form %}
+					<input type="submit" class=" btn btn-info col-md-12" name="" value="Done"><br><br>
+				</form>
+			</div>
+			<!-- >>>>>Col8 end>>>>> -->
+			<!-- >>>>>Col4 start>>>>> -->
+
+		</div>
+	</div>
+		<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+{% endblock %}
+
+<!-- <div class="form-group">
+	<label for="exampleInputEmail1">Email address</label>
+	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+</div>
+<div class="form-group">
+	<label for="exampleInputPassword1">Password</label>
+	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+</div>
+<div class="form-group">
+	<label for="exampleInputPassword1">Password</label>
+	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+</div>
+<div class="form-group">
+	<label>Message</label>
+	<textarea class="form-control" rows="3"></textarea>
+</div>
+<div class="form-group">
+	<label for="exampleInputFile">File input</label>
+	<input type="file" id="exampleInputFile">
+</div> -->

@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load bootstrap3 %}
+{% load static %}
+{% block style %}
+<style type="text/css">
+
+	.media-heading {
+		margin-top: 2px;
+	}
+	.media-heading span {
+		font-size: 12px;
+	}
+</style>
+{% endblock %}
+
+		<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-1  mx-auto">
+					<!-- ........>>>>>>>>><<<<<<<<........ -->
+						<div class="post-preview">
+							<div class="usersection">
+								<div class="image-section">
+									{% if post.article_author.profile_picture %}
+										<a href="{% url 'user_profile_view' id=post.article_author.name.id %}"><img src="{{ post.article_author.profile_picture.url }}"></a>
+									{% else %}
+										<a href="{% url 'user_profile_view' id=post.article_author.name.id %}"><img src="{% static 'image/ff.jpg' %}"></a>
+									{% endif %}
+								</div>
+								<div class="author-section">
+									<!-- posted by: {{post.article_author.name.username}} -->
+									<h4><a href="{% url 'user_profile_view' id=post.article_author.name.id %}">{{post.article_author.name.first_name}} {{post.article_author.name.last_name}}</a></h4>
+									<p>{{post.create_date|date:"D M Y"}}</p>
+								</div>
+							</div>
+							<div class="detais-section">
+								<div  class="post-img">
+									{% if post.post_image %}
+										<img src="{{post.post_image.url}}">
+									{% endif %}
+								</div>
+								<h4 class="post-subtitle">
+									<a>{{post.post_title}}</a>
+								</h4>
+								<p class="post-meta">
+									{{post.post_body|safe}}
+								</p>
+							</div>
+							<div class="likecomment">
+								<div>
+									<ul class="nav nav-pills nav-justified" role="tablist">
+										{% if userlike is True %}
+										<li><a href="{% url 'like' id=post.id name='likes'%}"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Like<span class="badge">{{likes}}</span></a></li>
+										{%else%}
+										<li><a href="{% url 'like' id=post.id name='likes'%}"><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp;Like<span class="badge">{{likes}}</span></a></li>
+										{% endif %}
+
+										<li><a ><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;Comment<span class="badge">{{getComment.count}}</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>  <!--.................-->
+						<div class="thumbnailedit">
+							<form method="POST" action="{% url 'comment' id=post.id %}">
+								{% csrf_token %}
+								{% bootstrap_form form %}
+								<input type="submit" class=" btn btn-info" name="" value="Done"><br><br>
+							</form>
+						</div>
+						<!-- >>>>>>>>>>>>>>>>>>>> -->
+						{% for com in getComment %}
+							<ul class="media-list editcommentsection">
+								<li class="media ">
+									<div class="media-left commentsectionimg">
+										<a>
+											<!-- <img class="media-object" src="..." alt="..."> -->
+											{% if com.comment_author.profile_picture %}
+												<img src="{{ com.comment_author.profile_picture.url }}">
+											{% else %}
+												<img src="{% static 'image/ff.jpg' %}">
+											{% endif %}
+										</a>
+									</div>
+									<div class="media-body">
+										<h4 class="media-heading">{{com.comment_author.name.first_name}} {{com.comment_author.name.last_name}} <span class="commentdate">{{com.create_date|date:"D M Y"}}</span></h4>
+										{{com.comment}}
+									</div>
+								</li>
+							</ul>
+						{% endfor %}
+				</div><!---->
+				<!-- >>>>>Col8 end>>>>> -->
+						<!-- >>>>>>>>>>>>>>>>>>>>>>>> -->
+				<!-- <div class="container">
+					<div class="row"> -->
+
+					<!-- </div>
+				</div> -->
+				<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+				<!-- <div class="container"> -->
+					<!-- <div class="col-md-8 col-md-offset-2 editcommentsectionmain">
+
+					</div> -->
+				<!-- </div> -->
+				<!-- >>>>>Col4 start>>>>> -->
+				<div class="col-md-3">
+					<div class="Categories_sections">
+						<div class="row">
+							<div>
+								<div class="thumbnail">
+									<h3 class="categorih3">Categories</h3>
+									<div class="caption">
+
+										{% for cat in cat %}
+										<a href="{% url 'category' name=cat.post_categori %}">
+											<ul class="list-group">
+												<li class="list-group-item">
+													<span class="badge">{{cat.post_categori_count}}</span>
+													{{cat.post_categori}}
+												</li>
+											</ul>
+										</a>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="popular_sections">
+						<div class="row">
+							<div class="popularsectionstart">
+								<h3 class="popularh3">Most Popular section</h3>
+								{% for pop in popular %}
+									<ul class="media-list">
+										<li class="media popularinside">
+											<div class="media-left">
+												<a href="{% url 'single_post' id=pop.id %}">
+												{% if pop.post_image %}
+													<img class="media-object popularimgsection" src="{{pop.post_image.url}}" alt="...">
+													{% else %}
+													<img class="media-object popularimgsection" src="{% static 'image/dm.jpg' %}" alt="">
+												{% endif %}
+												</a>
+											</div>
+											<div class="media-body">
+												<a href="{% url 'single_post' id=pop.id %}"><h4 class="media-heading">{{pop.post_title|truncatechars:18}}</h4>
+													<p>{{pop.post_body|truncatechars:25}}</p></a>
+												</div>
+											</li>
+										</ul>
+								{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block foo %}
+{% load static %}
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {% for post in member %}
+      {% for m in post.group_member.all %}
+      <div class="col-md-3 mdthreegroup">
+        <div class="groupmember col-md-12">
+          <div class="memberinfo">
+            <h4><b>{{m.name.first_name}} {{m.name.last_name}}</b></h4>
+            <h4><b>{{m.join_date}}</b></h4>
+          </div>
+          <div class="buttonremove">
+            <a href="{% url 'remove_groupmeber' gid=groupid id=m.id %}" class="btn btn-custom">Remove</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

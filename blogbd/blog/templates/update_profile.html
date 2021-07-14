@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load bootstrap3 %}
+{% block style %}
+
+<style media="screen">
+  body{
+    background:#a7a3a3;
+  }
+</style>
+{% endblock %}
+
+	<!-- ........................nav bar end................................. -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="thumbnail">
+					<h2>Update Your Profile</h2>
+					<form method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						{% bootstrap_form form %}
+						<input type="submit" class=" btn btn-info col-md-12" name="" value="Done"><br><br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+  <div class="thumbnail">
+        <p>hi{{author.join_date}}</p>
+  </div>
+{% endblock %}

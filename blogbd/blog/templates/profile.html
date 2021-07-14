@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% block foo %}
+{% load static %}
+{% block style %}
+	<style media="screen">
+	.nav>li>a:focus, .nav>li>a:hover {
+    transition: 1s ease !important;
+		color:blank !important;
+		/* background:#5f5dea !important; */
+	}
+	.btn-success:hover {
+    color: black !important;
+		transition: 1s ease;
+	}
+	.btn-danger:hover {
+		color: black !important;
+		transition: 1s ease;
+	}
+	/* .navbar {
+	margin-bottom: 0px;
+	} */
+	</style>
+{% endblock %}
+
+	<!-- ........................nav bar end................................. -->
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<!-- prifile Image section -->
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="prifile-top">
+					{% if author.cover_picture %}
+						<img src="{{author.cover_picture.url}}">
+					{% else %}
+						<img src="{% static 'image/bb.jpg' %}">
+					{% endif %}
+
+
+					<div class="profile-pik">
+						{% if author.cover_picture %}
+							<img src="{{author.profile_picture.url}}">
+						{% else %}
+							<img src="{% static 'image/ff.jpg' %}">
+						{% endif %}
+
+					</div>
+					<div class="meprofileusernme">
+						<h2>{{user.first_name}} {{user.last_name}}</h2>
+						<p>({{user.username}})</p>
+					</div>
+					{% if request.user.id == user.id %}
+					<div class="groupjoinbutton">
+	          <a href="{% url 'creategroup' %}" class="btn btn-success">Create Group</a>
+	        </div>
+						<div class="postcreatebutton">
+							<a href="{% url 'post_create' %}" class="btn btn-danger">Create Post</a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="Categories_sections">
+					<div class="row">
+						<div>
+							<div class="thumbnail">
+								<div class="list-group">
+									<a class="list-group-item">
+										<p class="list-group-item-text"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;<b>Lives in : </b>{{author.home_town}}</p>
+									</a><br>
+									<a class="list-group-item">
+										<p class="list-group-item-text"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;<b>From : </b>{{author.form_town}}</p>
+									</a><br>
+									<a class="list-group-item">
+										<p class="list-group-item-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;<b>Studied at : </b>{{author.study}}</p>
+									</a><br>
+									<a class="list-group-item">
+										<p class="list-group-item-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;<b>Went to : </b>{{author.went_to}}</p>
+									</a><br>
+									<a class="list-group-item">
+										<p class="list-group-item-text"><i class="fa fa-heartbeat" aria-hidden="true"></i>&nbsp;&nbsp;<b>Birth day : </b>{{author.birth_day}}</p>
+									</a><br>
+									<a class="list-group-item">
+										<p class="list-group-item-text"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;<b>Join Date : </b>{{author.join_date}}</p>
+									</a><br>
+									{% if request.user.id == user.id %}
+										<a href="{% url 'profile_update' id=user.id %}" class="btn btn-success col-md-12">update your info</a><br>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ............... -->
+					{% if access is True %}
+					<div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">My Groups</h3>
+                  <div class="caption">
+                    {% for jg in mywongroup %}
+                      <a href="{% url 'singlegroup' id=jg.id %}">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span class="badge">{{jg.group_member.count}}</span>
+                            {{jg.group_name}}
+                          </li>
+                        </ul>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+						<!-- ............... -->
+					<div class="Categories_sections">
+            <div class="row">
+              <div>
+                <div class="thumbnail">
+                  <h3 class="categorih3">Joined Groups</h3>
+                  <div class="caption">
+                    {% for jg in joindgroup %}
+                      <a href="{% url 'singlegroup' id=jg.id %}">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span class="badge">{{jg.group_member.count}}</span>
+                            {{jg.group_name}}
+                          </li>
+                        </ul>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-md-8   mx-auto">
+				<!-- ........>>>>>>>>><<<<<<<<........ -->
+				{% for post in article %}
+					<div class="post-preview">
+						<div class="usersection">
+							<div class="image-section">
+								{% if post.article_author.profile_picture %}
+									<img src="{{ post.article_author.profile_picture.url }}">
+								{% else %}
+									<img src="{% static 'image/ff.jpg' %}">
+								{% endif %}
+							</div>
+							<div class="author-section">
+								<h4>{{post.article_author.name.first_name}} {{post.article_author.name.last_name}}</h4>
+								<p>{{post.create_date|date:"D M Y"}}</p>
+							</div>
+							{% if request.user.id == user.id %}
+								{% if not post.published_date %}
+										<div class="mePublished">
+											<a class="btn btn-danger" href="{% url 'post_published' id=post.id %}">Published</a>
+										</div>
+								{% else %}
+										<div class="mePublished">
+											<a class="btn btn-info" href="{% url 'post_update' id=post.id %}">Update </a>
+										</div>
+										<div class="mePublished">
+											<a class="btn btn-info" href="{% url 'post_delete' id=post.id %}">Delete</a>
+											<span class="deltiptext">Are You Sure</span>
+										</div>
+										<!-- .............................. -->
+										<!-- <div class="modal fade PRODELETE" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+										  <div class="modal-dialog modal-sm" role="document">
+										    <div class="modal-content">
+										      <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Are you sure <a class="btn btn-info" href="{% url 'post_delete' id=post.id %}">Yes{{post.id}}</a></h2>
+										    </div>
+										  </div>
+										</div> -->
+										<!-- .............................. -->
+								{% endif %}
+							{% endif %}
+						</div>
+						<div class="detais-section">
+							<div  class="post-img">
+								{% if post.post_image %}
+									<a href="{% url 'single_post' id=post.id %}"><img src="{{post.post_image.url}}"></a>
+								{% endif %}
+							</div>
+							<h4 class="post-subtitle">
+								<a href="{% url 'single_post' id=post.id %}">{{post.post_title}}</a>
+							</h4>
+							<p class="post-meta">
+								{{post.post_body}}
+							</p>
+						</div>
+						<div class="likecomment">
+							<div>
+								<ul class="nav nav-pills nav-justified" role="tablist">
+									{% if  not post.published_date %}
+										<li><a href="{% url 'post_update' id=post.id %}" class="btn-success problacksection">Update<span class="badge"></span></a></li>
+										<li><a href="{% url 'post_delete' id=post.id %}" class="btn-danger problacksection">Delete<span class="badge"></span></a></li>
+									{% else %}
+										<li id="like" ><a href="{% url 'single_post' id=post.id %}" ><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Total Likes<span class="badge">	{{post.like_count}}</span></a></li>
+										<li><a href="{% url 'single_post' id=post.id %}"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;Get Comment<span class="badge"></span></a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				{% endfor %}<!-- .......... -->
+				<!-- .......... -->
+			</div>	<!-- >>>>>Col8 end>>>>> -->
+		</div><!-- >>>>>Col4 start>>>>> -->
+	</div>
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+
+{% endblock %}
